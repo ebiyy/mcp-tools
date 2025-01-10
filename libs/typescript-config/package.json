@@ -1,0 +1,11 @@
+{
+  "name": "@mcp-tools/typescript-config",
+  "version": "0.1.0",
+  "private": true,
+  "files": [
+    "tsconfig.json"
+  ],
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
