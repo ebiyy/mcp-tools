@@ -1,0 +1,26 @@
+{
+  "name": "@mcp-tools/npm-info",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir build --target node && chmod 755 build/index.js",
+    "dev": "bun run src/index.ts",
+    "start": "bun run build/index.js",
+    "lint": "biome lint src/",
+    "clean": "rm -rf build"
+  },
+  "dependencies": {
+    "@effect/data": "^0.18.7",
+    "@effect/io": "^0.41.2",
+    "@modelcontextprotocol/sdk": "0.6.0",
+    "axios": "^1.0.0",
+    "npm-registry-fetch": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  }
+}
