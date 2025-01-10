@@ -1,84 +1,76 @@
-# Turborepo starter
+# MCP Tools Monorepo
 
-This is an official starter Turborepo.
+このリポジトリは、Model Context Protocol (MCP) のツールとサーバーを管理するmonorepoです。
 
-## Using this example
+## フォルダ構造
 
-Run the following command:
+```
+mcp-tools/
+├── servers/     # MCPサーバーの実装
+│   ├── memory-store/  # メモリストレージサーバー
+│   ├── npm-info/      # NPMパッケージ情報サーバー
+│   └── slack/         # Slack統合サーバー
+├── libs/        # 共有ライブラリとユーティリティ
+│   └── typescript-config/  # 共有TypeScript設定
+├── examples/    # サンプル実装とデモ
+└── docs/        # ドキュメント
+```
+
+## 利用可能なMCPサーバー
+
+### memory-store
+インメモリストレージを提供するMCPサーバー。キーバリューストアとして機能し、一時的なデータの保存と取得が可能です。
+
+### npm-info
+NPMパッケージの情報を取得するMCPサーバー。パッケージの最新情報、リリース履歴、依存関係の分析などが可能です。
+
+### slack
+Slack統合用のMCPサーバー。メッセージの送信、チャンネル一覧の取得、ユーザー情報の取得などが可能です。
+
+## 開発方法
+
+### 依存関係のインストール
 
 ```sh
-npx create-turbo@latest
+bun install
 ```
 
-## What's inside?
+### ビルド
 
-This Turborepo includes the following packages/apps:
+全てのパッケージをビルドします：
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```sh
+bun run build
 ```
 
-### Develop
+### 開発モード
 
-To develop all apps and packages, run the following command:
+開発モードで全てのパッケージを起動します：
 
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```sh
+bun run dev
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### リント/フォーマット
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+```sh
+# リント
+bun run lint
 
+# フォーマット
+bun run format
 ```
-npx turbo link
-```
 
-## Useful Links
+## 新しいMCPサーバーの追加
 
-Learn more about the power of Turborepo:
+1. `servers/`ディレクトリに新しいパッケージを作成
+2. `@modelcontextprotocol/sdk`を依存関係に追加
+3. MCPサーバーの実装を作成
+4. `package.json`の`workspaces`に新しいパッケージを追加（必要な場合）
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+## 技術スタック
+
+- [TypeScript](https://www.typescriptlang.org/)
+- [Turborepo](https://turbo.build/repo)
+- [Biome](https://biomejs.dev/)
+- [Model Context Protocol SDK](https://github.com/ModelContext/protocol)
