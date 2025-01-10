@@ -1,0 +1,13 @@
+{
+  "extends": "@mcp-tools/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "build",
+    "rootDir": "src"
+  },
+  "include": ["src/**/*"],
+  "references": [
+    {
+      "path": "../typescript-config"
+    }
+  ]
+}
